@@ -63,7 +63,7 @@ print(image_embeddings.shape)
 ## Data Preparation
 
 <p align="center">
-    <img src="dataset.png" alt="PhenoProfiler" width="100%">
+    <img src="dataset.png" alt="dataset" width="100%">
 </p>
 
 ```
@@ -71,4 +71,12 @@ BBBC022: aws s3 cp s3://cytodata/datasets/Bioactives-BBBC022-Gustafsdottir/ ./ -
 CDRP-BIO-BBBC036: aws s3 cp s3://cytodata/datasets/CDRPBIO-BBBC036-Bray/ ./ --recursive --no-sign-request
 TAORF-BBBC037: “aws s3 cp s3://cytodata/datasets/TA-ORF-BBBC037-Rohban/ ./ --recursive --no-sign-request
 cpg0019: “aws s3 cp s3://cellpainting-gallery/cpg0019-moshkov-deepprofiler/ ./ --recursive --no-sign-request
+```
 
+# Reference
+If you find this project is useful for your research, please cite:
+```
+@article{PhenoProfiler,
+
+}
+```
