@@ -69,8 +69,8 @@ print(image_embeddings.shape)
 ```
 BBBC022: aws s3 cp s3://cytodata/datasets/Bioactives-BBBC022-Gustafsdottir/ ./ --recursive --no-sign-request
 CDRP-BIO-BBBC036: aws s3 cp s3://cytodata/datasets/CDRPBIO-BBBC036-Bray/ ./ --recursive --no-sign-request
-TAORF-BBBC037: “aws s3 cp s3://cytodata/datasets/TA-ORF-BBBC037-Rohban/ ./ --recursive --no-sign-request
-cpg0019: “aws s3 cp s3://cellpainting-gallery/cpg0019-moshkov-deepprofiler/ ./ --recursive --no-sign-request
+TAORF-BBBC037: aws s3 cp s3://cytodata/datasets/TA-ORF-BBBC037-Rohban/ ./ --recursive --no-sign-request
+cpg0019: aws s3 cp s3://cellpainting-gallery/cpg0019-moshkov-deepprofiler/ ./ --recursive --no-sign-request
 ```
 
 # Reference
