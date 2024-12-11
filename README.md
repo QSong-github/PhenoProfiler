@@ -26,6 +26,13 @@ conda activate PhenoProfiler
 ```
 
 ## Usage
+See [PhenoProfiler_inference.ipynb](PhenoProfiler_inference.ipynb)
+```
+git clone https://github.com/QSong-github/PhenoProfiler.git
+cd PhenoProfiler
+conda env create -f environment.yaml
+conda activate PhenoProfiler
+```
 
 
 ## Data Preparation
