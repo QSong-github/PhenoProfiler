@@ -133,5 +133,5 @@ If you find this project is useful for your research, please cite:
 }
 ```
 
-Our code is based on the [BLEEP](https://github.com/bowang-lab/BLEEP). Special thanks to the authors and contributors for their invaluable work.
+Our code is based on the [CLIP](https://github.com/openai/CLIP) and [BLEEP](https://github.com/bowang-lab/BLEEP). Special thanks to the authors and contributors for their invaluable work.
 
