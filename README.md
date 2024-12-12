@@ -25,7 +25,6 @@ git clone https://github.com/QSong-github/PhenoProfiler.git
 cd PhenoProfiler
 conda env create -f environment.yaml
 conda activate PhenoProfiler
-# conda install pytorch==2.4.1 torchvision==0.19.1 torchaudio==2.4.1  pytorch-cuda=11.8 -c pytorch -c nvidia
 ```
 
 ## Usage
