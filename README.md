@@ -114,7 +114,7 @@ python train.py --model MSE
 python train.py --exp_name result/PhenoProfiler --pretrained_model result/PhenoProfiler_MSE
 ```
 
-## testing
+## Testing
 ```
 python test_22.py
 python test_36.py
