@@ -12,7 +12,7 @@
 ---
 
 ## To be updated:
-- Code for all 'figures' in our paper.
+- Code for all `Figures` in our paper.
 - The `PhenoProfiler` package, which can be installed via `pip install PhenoProfiler`.
 
 ---
