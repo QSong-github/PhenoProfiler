@@ -90,7 +90,7 @@ dataset/
                 IXMtest_B15_s8_w49DE56250-C587-48D8-8840-5A322A3F0177.png
                 IXMtest_F20_s4_w4ABAD0B1C-D157-496F-96B9-5909F00DEFF7.png
                 ...
-        embedding/
+        embedding/ # from cpg0019
             20585/
                 A01/
                     1/
