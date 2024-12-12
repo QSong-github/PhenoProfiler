@@ -1,0 +1,37 @@
+name: PhenoProfiler
+channels:
+  - pytorch
+  - defaults
+dependencies:
+  - python=3.11
+  - pip=24.0
+  - cudatoolkit=11.8
+  - numpy=1.26.3
+  - pip:
+    - torch==2.4.1
+    - torchvision==0.19.1
+    - torchaudio
+    - -f https://download.pytorch.org/whl/cu118
+    - anndata==0.10.9
+    - scikit-image
+    - matplotlib==3.9.3
+    - matplotlib_venn==1.1.1
+    - opencv_python==4.10.0.84
+    - metrics==0.3.3
+    - openpyxl==3.1.5
+    - imageio==2.9.0
+    - Pillow==11.0.0
+    - imageio-ffmpeg==0.4.2
+    - pandas==2.2.3
+    - pycytominer==1.2.1
+    - scanpy==1.10.4
+    - scikit_learn==1.6.0
+    - einops==0.3.0
+    - torch-fidelity==0.3.0
+    - torchmetrics==0.6.0
+    - scipy==1.14.1
+    - seaborn==0.13.2
+    - shap==0.46.0
+    - timm==1.0.12
+    - tqdm==4.66.5
+    - transformers==4.46.0
