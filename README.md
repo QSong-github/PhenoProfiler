@@ -63,6 +63,8 @@ print(image_embeddings.shape)
 ```
 
 
+# Training Model
+
 ## Data Preparation
 
 <p align="center">
@@ -76,6 +78,50 @@ TAORF-BBBC037: aws s3 cp s3://cytodata/datasets/TA-ORF-BBBC037-Rohban/ ./ --recu
 cpg0019: aws s3 cp s3://cellpainting-gallery/cpg0019-moshkov-deepprofiler/ ./ --recursive --no-sign-request
 ```
 
+After download, organise the dataset as follows:
+```
+dataset/
+    bbbc022/
+        images/
+            20585/
+                IXMtest_B15_s8_w49DE56250-C587-48D8-8840-5A322A3F0177.png
+                IXMtest_F20_s4_w4ABAD0B1C-D157-496F-96B9-5909F00DEFF7.png
+                ...
+        embedding/
+            20585/
+                A01/
+                    1/
+                        embedding.npz
+        profiling.csv
+    bbbc036/
+        images/ ...
+        embedding/ ...
+        profiling.csv
+    bbbc037/
+        images/ ...
+        embedding/ ...
+        profiling.csv
+```
+
+## Training from scratch
+**Step1**: training the first model by regression loss:
+```
+python train.py --model MSE
+```
+
+**Step2**: training the final model by all loss:
+```
+python train.py --exp_name result/PhenoProfiler --pretrained_model result/PhenoProfiler_MSE
+```
+
+## testing
+```
+python test_22.py
+python test_36.py
+python test_37.py
+```
+
+
 # Reference
 If you find this project is useful for your research, please cite:
 ```
@@ -83,3 +129,6 @@ If you find this project is useful for your research, please cite:
 
 }
 ```
+
+Our code is based on the [BLEEP](https://github.com/bowang-lab/BLEEP). Special thanks to the authors and contributors for their invaluable work.
+
