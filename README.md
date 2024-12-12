@@ -2,7 +2,7 @@
 
 **PhenoProfiler** is an advanced tool for phenotypic profiling of cell morphology, to efficiently and effectively extract phenotypic effects of perturbations from high-throughput imaging. 
 
-PhenoProfiler operates as an end-to-end image encoder, converting multi-channel images directly into low-dimensional quantitative features, thus eliminating the need for extensive preprocessing in non-end-to-end pipeline. For more details, please refer to our [paper]().
+**PhenoProfiler** operates as an end-to-end image encoder, converting multi-channel images directly into low-dimensional quantitative features, thus eliminating the need for extensive preprocessing in non-end-to-end pipeline. For more details, please refer to our [paper]().
 
 <p align="center">
     <img src="model.png" alt="PhenoProfiler" width="100%">
@@ -12,7 +12,7 @@ PhenoProfiler operates as an end-to-end image encoder, converting multi-channel 
 ---
 
 ## To be updated:
-- **Automated** the model and data download process.
+- Code for all 'figures' in our paper.
 - The `PhenoProfiler` package, which can be installed via `pip install PhenoProfiler`.
 
 ---
@@ -25,6 +25,7 @@ git clone https://github.com/QSong-github/PhenoProfiler.git
 cd PhenoProfiler
 conda env create -f environment.yaml
 conda activate PhenoProfiler
+conda install pytorch==2.4.1 torchvision==0.19.1 torchaudio==2.4.1  pytorch-cuda=11.8 -c pytorch -c nvidia
 ```
 
 ## Usage
