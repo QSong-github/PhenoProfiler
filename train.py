@@ -29,16 +29,16 @@ parser.add_argument('--model', type=str, default='PhenoProfiler', help='')
 
 def build_loaders(args):
     print("Building loaders")
-    # dataset = PDDDataset(image_path = "../dataset/",
-    #            embedding_path = "../dataset/",
-    #            CSV_path = "../dataset/bbbc_merge.csv")
-    dataset = PDDDataset(image_path = "../dataset/bbbc022/images/",
-               embedding_path = "../dataset/bbbc022/embedding/",
-               CSV_path = "../dataset/bbbc022/profiling.csv")
+    dataset = PDDDataset(image_path = "../dataset/",
+               embedding_path = "../dataset/",
+               CSV_path = "../dataset/bbbc_merge.csv")
+    # dataset = PDDDataset(image_path = "../dataset/bbbc022/images/",
+    #           embedding_path = "../dataset/bbbc022/embedding/",
+    #           CSV_path = "../dataset/bbbc022/profiling.csv")
     
     dataset = torch.utils.data.ConcatDataset([dataset])
     
-    train_size = int(0.95 * len(dataset))
+    train_size = int(0.9 * len(dataset))
     test_size = len(dataset) - train_size
     train_dataset, test_dataset = torch.utils.data.random_split(dataset, [train_size, test_size], generator=torch.Generator().manual_seed(42))
     print(len(train_dataset), len(test_dataset)) # 53246 13312 = 66558
