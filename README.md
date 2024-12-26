@@ -118,7 +118,7 @@ python train.py --exp_name result/PhenoProfiler --pretrained_model result/PhenoP
 
 ## Testing
 
-The phenotype correction strategy processed features are obtained by executing the corresponding ipynb file [Phenotype correction strategy.ipynb.ipynb](Phenotype_correction_strategy.ipynb). 
+The phenotype correction strategy-processed features are available by executing the corresponding ipynb file [Phenotype correction strategy.ipynb](Phenotype_correction_strategy.ipynb). 
 
 ```
 python test_22.py
