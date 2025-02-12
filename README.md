@@ -34,6 +34,9 @@ conda activate PhenoProfiler
 ```
 
 ## Usage
+
+For simple use, you can use PhenoProfiler on our [webserver](https://phenoprofiler.org/).
+
 See [PhenoProfiler_inference.ipynb](PhenoProfiler_inference.ipynb). 
 
 The trained models of PhenoProfiler can be downloaded at [synapse](https://www.synapse.org/Synapse:syn64371555) or [google drive](https://drive.google.com/drive/folders/1Z58cPewzSNLNKJii2OEip6IopouL_Rdd).
