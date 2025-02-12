@@ -14,7 +14,7 @@
 
 **PhenoProfiler** operates as an end-to-end image encoder, converting multi-channel images directly into low-dimensional quantitative features, thus eliminating the need for extensive preprocessing in non-end-to-end pipeline. For more details, please refer to our [paper]().
 
-
+<!-- 
 ---
 
 ## To be updated:
@@ -22,7 +22,7 @@
 - The `PhenoProfiler` package, which can be installed via `pip install PhenoProfiler`.
 
 ---
-
+-->
 
 ## Requirements
 
