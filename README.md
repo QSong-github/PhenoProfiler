@@ -33,7 +33,7 @@ conda env create -f environment.yaml
 conda activate PhenoProfiler
 ```
 
-## Usage
+## Usage 🚀
 
 For simple use, you can use PhenoProfiler on our [webserver](https://phenoprofiler.org/).
 
