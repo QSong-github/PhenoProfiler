@@ -2,14 +2,17 @@
 
 <h3 align="center">  PhenoProfiler : Advancing Morphology Representations for Image-based Drug Discovery </h3>
 
+<p align="center">
+   🤗 <a href="https://phenoprofiler.org/" target="_blank">Websever</a> ·  📕 <a href="https://www.synapse.org/Synapse:syn64371555" target="_blank">Model</a> 
+</p>
 
 **PhenoProfiler** is an advanced tool for phenotypic profiling of cell morphology, to efficiently extract phenotypic effects of perturbations from high-throughput imaging. 
-
-**PhenoProfiler** operates as an end-to-end image encoder, converting multi-channel images directly into low-dimensional quantitative features, thus eliminating the need for extensive preprocessing in non-end-to-end pipeline. For more details, please refer to our [paper]().
 
 <p align="center">
     <img src="model.png" alt="PhenoProfiler" width="100%">
 </p>
+
+**PhenoProfiler** operates as an end-to-end image encoder, converting multi-channel images directly into low-dimensional quantitative features, thus eliminating the need for extensive preprocessing in non-end-to-end pipeline. For more details, please refer to our [paper]().
 
 
 ---
