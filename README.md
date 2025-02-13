@@ -1,4 +1,7 @@
-![PhenoProfiler](figures/logo.png)
+
+<p align="center">
+    <img src="figures/logo.png" alt="PhenoProfiler" width="60%">
+</p>
 
 <h1 align="center">  PhenoProfiler    🤗 <a href="https://phenoprofiler.org/" target="_blank">Webserver</a> 🤗</h1>
 
