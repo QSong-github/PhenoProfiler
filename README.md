@@ -1,5 +1,6 @@
-<h1 align="center">  PhenoProfiler  </h1>
 ![PhenoProfiler](figures/logo.png)
+
+<h1 align="center">  PhenoProfiler  </h1>
 
 <h3 align="center">  PhenoProfiler : Advancing Morphology Representations for Image-based Drug Discovery </h3>
 
@@ -10,7 +11,7 @@
 **PhenoProfiler** is an advanced tool for phenotypic profiling of cell morphology, to efficiently extract phenotypic effects of perturbations from high-throughput imaging. 
 
 <p align="center">
-    <img src="model.png" alt="PhenoProfiler" width="100%">
+    <img src="figures/model.png" alt="PhenoProfiler" width="100%">
 </p>
 
 **PhenoProfiler** operates as an end-to-end image encoder, converting multi-channel images directly into low-dimensional quantitative features, thus eliminating the need for extensive preprocessing in non-end-to-end pipeline. For more details, please refer to our [paper]().
@@ -80,7 +81,7 @@ print(image_embeddings.shape)
 ## Data Preparation
 
 <p align="center">
-    <img src="dataset.png" alt="dataset" width="80%">
+    <img src="figures/dataset.png" alt="dataset" width="80%">
 </p>
 
 ```
