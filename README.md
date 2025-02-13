@@ -1,4 +1,4 @@
-![PhenoProfiler](figures/logo.png)
+
 
 <h1 align="center">  PhenoProfiler  </h1>
 
