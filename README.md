@@ -1,6 +1,6 @@
 ![PhenoProfiler](figures/logo.png)
 
-<h1 align="center">  PhenoProfiler    🤗 <a href="https://phenoprofiler.org/" target="_blank">Webserver</a> </h1>
+<h1 align="center">  PhenoProfiler    🤗 <a href="https://phenoprofiler.org/" target="_blank">Webserver</a> 🤗</h1>
 
 <h3 align="center">  PhenoProfiler : Advancing Morphology Representations for Image-based Drug Discovery  </h3>
 
