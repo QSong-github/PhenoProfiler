@@ -1,4 +1,5 @@
 <h1 align="center">  PhenoProfiler  </h1>
+![PhenoProfiler](figures/logo.png)
 
 <h3 align="center">  PhenoProfiler : Advancing Morphology Representations for Image-based Drug Discovery </h3>
 
