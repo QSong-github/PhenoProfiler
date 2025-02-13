@@ -1,6 +1,6 @@
 
 <p align="center">
-    <img src="figures/logo.png" alt="PhenoProfiler" width="60%">
+    <img src="figures/logo.png" alt="PhenoProfiler" width="100%">
 </p>
 
 <h1 align="center">  PhenoProfiler    🤗 <a href="https://phenoprofiler.org/" target="_blank">Webserver</a> 🤗</h1>
