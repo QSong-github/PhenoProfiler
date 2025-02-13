@@ -2,11 +2,9 @@
 
 <h1 align="center">  PhenoProfiler  </h1>
 
-<h3 align="center">  PhenoProfiler : Advancing Morphology Representations for Image-based Drug Discovery </h3>
+<h3 align="center">  PhenoProfiler : Advancing Morphology Representations for Image-based Drug Discovery   🤗 <a href="https://phenoprofiler.org/" target="_blank">Webserver</a> </h3>
 
-<h3 align="center">
-   🤗 <a href="https://phenoprofiler.org/" target="_blank">Webserver</a> ·  📕 <a href="https://www.synapse.org/Synapse:syn64371555" target="_blank">Model</a> 
-</h3>
+
 
 **PhenoProfiler** is an advanced tool for phenotypic profiling of cell morphology, to efficiently extract phenotypic effects of perturbations from high-throughput imaging. 
 
