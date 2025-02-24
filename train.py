@@ -16,7 +16,7 @@ import argparse
 parser = argparse.ArgumentParser(description='Train PhenoProfiler')
 
 parser.add_argument('--exp_name', type=str, default='result/PhenoProfiler_MSE', help='')
-parser.add_argument('--batch_size', type=int, default=20, help='')  # change it if cuda out of memory
+parser.add_argument('--batch_size', type=int, default=200, help='')  # change it if cuda out of memory
 parser.add_argument('--max_epochs', type=int, default=200, help='')
 parser.add_argument('--num_workers', type=int, default=10, help='')
 parser.add_argument('--pretrained_model', type=str, default=None, help='')
