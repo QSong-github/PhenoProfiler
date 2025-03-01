@@ -3,7 +3,10 @@
     <img src="figures/logo.png" alt="PhenoProfiler" width="100%">
 </p>
 
-<h1 🤗 <a href="https://phenoprofiler.org/" target="_blank">Webserver</a> 🤗 <a href="https://arxiv.org/abs/2502.19568" target="_blank">Paper</a> 🤗</h1>
+<h1>
+    <a href="https://phenoprofiler.org/" target="_blank">Webserver</a> 🤗 
+    <a href="https://arxiv.org/abs/2502.19568" target="_blank">Paper</a> 🤗
+</h1>
 
 <h3 align="center">  PhenoProfiler : Advancing Morphology Representations for Image-based Drug Discovery  </h3>
 
