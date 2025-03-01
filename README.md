@@ -104,12 +104,12 @@ dataset/
                 IXMtest_B15_s8_w49DE56250-C587-48D8-8840-5A322A3F0177.png
                 IXMtest_F20_s4_w4ABAD0B1C-D157-496F-96B9-5909F00DEFF7.png
                 ...
-        embedding/ # from cpg0019
+        embedding/ # from [cpg0019](https://cellpainting-gallery.s3.amazonaws.com/index.html#cpg0019-moshkov-deepprofiler/broad/workspace_dl/embeddings/105281_zenodo7114558/)
             20585/
                 A01/
                     1/
                         embedding.npz
-        profiling.csv
+        profiling.csv # from [cpg0019](https://cellpainting-gallery.s3.amazonaws.com/index.html#cpg0019-moshkov-deepprofiler/broad/workspace_dl/metadata/)
     bbbc036/
         images/ ...
         embedding/ ...
