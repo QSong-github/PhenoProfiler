@@ -2,7 +2,7 @@
 <div style="text-align: center;">
     <img src="figures/logo.png" alt="PhenoProfiler" width="100%">
     <h1 align="center">
-        <a href="https://phenoprofiler.org/" target="_blank">Webserver</a> 🤗 
+        🤗 <a href="https://phenoprofiler.org/" target="_blank">Webserver</a> 🤗 
         <a href="https://arxiv.org/abs/2502.19568" target="_blank">Paper</a> 🤗
     </h1>
 </div>
