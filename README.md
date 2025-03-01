@@ -3,7 +3,7 @@
     <img src="figures/logo.png" alt="PhenoProfiler" width="100%">
 </p>
 
-<h1 align="center">  PhenoProfiler    🤗 <a href="https://phenoprofiler.org/" target="_blank">Webserver</a> 🤗</h1>
+<h1 align="center">  PhenoProfiler    🤗 <a href="https://phenoprofiler.org/" target="_blank">Webserver</a> 🤗  <a href="https://arxiv.org/abs/2502.19568" target="_blank">Paper</a> 🤗</h1>
 
 <h3 align="center">  PhenoProfiler : Advancing Morphology Representations for Image-based Drug Discovery  </h3>
 
@@ -15,7 +15,7 @@
     <img src="figures/model.png" alt="PhenoProfiler" width="100%">
 </p>
 
-**PhenoProfiler** operates as an end-to-end image encoder, converting multi-channel images directly into low-dimensional quantitative features, thus eliminating the need for extensive preprocessing in non-end-to-end pipeline. For more details, please refer to our [paper]().
+**PhenoProfiler** operates as an end-to-end image encoder, converting multi-channel images directly into low-dimensional quantitative features, thus eliminating the need for extensive preprocessing in non-end-to-end pipeline. For more details, please refer to our [paper](https://arxiv.org/abs/2502.19568).
 
 <!-- 
 ---
