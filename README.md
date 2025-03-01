@@ -143,7 +143,14 @@ python test_37.py
 If you find this project is useful for your research, please cite:
 ```
 @article{PhenoProfiler,
-
+@misc{li2025phenoprofiler,
+      title={PhenoProfiler: Advancing Phenotypic Learning for Image-based Drug Discovery}, 
+      author={Bo Li and Bob Zhang and Chengyang Zhang and Minghao Zhou and Weiliang Huang and Shihang Wang and Qing Wang and Mengran Li and Yong Zhang and Qianqian Song},
+      year={2025},
+      eprint={2502.19568},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2502.19568}, 
 }
 ```
 
