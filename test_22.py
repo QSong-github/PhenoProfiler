@@ -64,7 +64,7 @@ def main():
             data_paths=CONFIG["data_paths"]
         )
         os.makedirs(CONFIG["save_path"], exist_ok=True)
-        np.save(CONFIG["save_path"] + "PhenoProfiler_alltrain_22test.npy", img_embeddings.cpu().numpy().T)
+        np.save(CONFIG["save_path"] + "PhenoProfiler_alltrain_22test.npy", img_embeddings.numpy().T)
     
     # Step 2: Process profiles
     features = np.load(CONFIG["save_path"] + "PhenoProfiler_alltrain_22test.npy").T
