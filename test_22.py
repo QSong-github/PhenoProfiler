@@ -95,7 +95,7 @@ def main():
     
 def print_results(results):
     """打印评估结果"""
-    print(f"Average enrichment@1%: {results['enrichment_top1']:.3f}")
+    print(f"Folds of Enrichment@1%: {results['enrichment_top1']:.3f}")
     print(f"Mean Average Precision (MAP): {results['map']:.3f}")
     print(f"Recall@1%: {results['recall_top1']:.3f}")
     print(f"Recall@3%: {results['recall_top3']:.3f}")
