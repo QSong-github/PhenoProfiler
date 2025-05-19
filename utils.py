@@ -17,8 +17,21 @@ http://hal.archives-ouvertes.fr/docs/00/72/67/60/PDF/07-busa-fekete.pdf
 Learning to Rank for Information Retrieval (Tie-Yan Liu)
 """
 
-import scipy
+import os
 import numpy as np
+import pandas as pd
+import scipy
+import scipy.linalg
+import sklearn.metrics
+from tqdm import tqdm
+from torch.utils.data import ConcatDataset
+
+import pandas as pd
+import torch
+from torch.utils.data import DataLoader
+from tqdm import tqdm
+import sklearn.metrics
+from dataset import PDD_Img_Dataset
 
 class AvgMeter:
     def __init__(self, name="Metric"):
@@ -36,6 +49,215 @@ class AvgMeter:
     def __repr__(self):
         text = f"{self.name}: {self.avg:.4f}"
         return text
+
+# ========== 数据加载和处理 ==========
+def build_loaders_inference(data_paths, batch_size):
+    """构建推理数据加载器"""
+    dataset = PDD_Img_Dataset(
+        image_path=data_paths["image"],
+        embedding_path=data_paths["embedding"], 
+        CSV_path=data_paths["csv"]
+    )
+    return DataLoader(
+        ConcatDataset([dataset]),
+        batch_size=batch_size,
+        shuffle=False,
+        num_workers=4,
+        pin_memory=True
+    )
+
+def get_image_embeddings(model, data_paths, batch_size):
+    """获取图像嵌入特征"""
+    test_loader = build_loaders_inference(data_paths, batch_size)
+    model.eval()
+    
+    embeddings = []
+    with torch.no_grad():
+        for batch in tqdm(test_loader, desc="Extracting features"):
+            features = model.image_encoder(batch["image"].cuda())
+            embeddings.append(model.image_projection(features))
+    return torch.cat(embeddings).cpu().numpy()
+
+class WhiteningNormalizer:
+    def __init__(self, controls, reg_param=1e-6):
+        # 确保输入是NumPy数组
+        controls = np.asarray(controls)
+        self.mu = controls.mean(axis=0)
+        X = controls - self.mu
+        C = (X.T @ X) / X.shape[0]
+        s, V = scipy.linalg.eigh(C)
+        self.W = V @ np.diag(1./np.sqrt(s + reg_param)) @ V.T
+
+    def normalize(self, X):
+        # 确保输入是NumPy数组
+        X = np.asarray(X)
+        return (X - self.mu) @ self.W
+
+# ========== 评估指标计算 ==========
+def moa_matching(profiles, moa_df):
+    """生成MOA匹配矩阵"""
+    matches = np.zeros((len(profiles), len(profiles)), dtype=bool)
+    moa_list = profiles["Metadata_moa.x"].str.replace('|', '___')
+    
+    for i, ref_moa in enumerate(moa_list):
+        for m in ref_moa.split('|'):
+            pattern = rf'(^|___){m}($|___)'
+            matches[i] |= moa_list.str.contains(pattern).values
+    return matches
+
+
+def aggregate_to_well_level(meta, features, config):
+    """聚合到well层级"""
+    site_data, site_features = [], []
+    
+    for plate in tqdm(meta["Metadata_Plate"].unique(), desc="Aggregating sites"):
+        plate_meta = meta[meta["Metadata_Plate"] == plate]
+        for _, row in plate_meta.iterrows():
+            idx = row.name
+            if len(features[idx]) == 0:
+                continue
+                
+            # 获取当前样本的特征
+            current_feature = features[idx]
+            
+            # 检查特征形状并处理
+            if current_feature.ndim == 1:  # 已经是向量
+                feature_vec = current_feature
+            else:  # 如果是2D数组(如多个细胞的多个特征)
+                feature_vec = current_feature.mean(axis=0)  # 计算细胞间的平均特征
+                
+            # 确保特征维度正确
+            if feature_vec.shape != (config["num_features"],):
+                print(f"Warning: Unexpected feature shape at index {idx}: {feature_vec.shape}")
+                continue
+                
+            site_data.append({
+                "Plate": plate,
+                "Well": row["Metadata_Well"],
+                "Treatment": row["Treatment"],
+                "Replicate": row["broad_sample_Replicate"],
+                "broad_sample": row["Treatment"].split("@")[0]
+            })
+            site_features.append(feature_vec)
+    
+    return create_well_df(site_data, site_features, config)
+
+
+def create_well_df(site_data, site_features, config):
+    """创建well层DataFrame"""
+    columns1 = ["Plate", "Well", "Treatment", "Replicate"]
+    
+    # 转换为numpy数组并检查形状
+    features_array = np.array(site_features)
+    print("Final features array shape:", features_array.shape)  # 调试输出
+    
+    if features_array.shape[1] != config["num_features"]:
+        raise ValueError(
+            f"Feature dimension mismatch: expected {config['num_features']}, "
+            f"got {features_array.shape[1]}"
+        )
+    
+    wells = pd.DataFrame(site_data)
+    feature_df = pd.DataFrame(features_array, columns=range(config["num_features"]))
+    return pd.concat([wells, feature_df], axis=1)
+
+def prepare_profiles(wells, config):
+    """准备treatment层特征"""
+    wells = wells.drop(columns=["Plate", "Well", "broad_sample"])
+    profiles = wells.groupby("Treatment").mean().reset_index()
+    profiles["broad_sample"] = profiles["Treatment"].str.split("@", expand=True)[0]
+    
+    # 添加MOA信息
+    columns2 = [i for i in range(config["num_features"])] 
+
+    moa_df = pd.read_csv(config["data_paths"]["moa"])
+    profiles = pd.merge(profiles, moa_df, left_on="broad_sample", right_on="Var1")
+    profiles = profiles[["Treatment", "broad_sample", "Metadata_moa.x"] + columns2].sort_values(by="broad_sample")
+    
+    return profiles, moa_df
+
+def compute_similarity_matrix(profiles, moa_df, config):
+    """计算相似度矩阵和MOA匹配"""
+    cos_sim = sklearn.metrics.pairwise.cosine_similarity(
+        profiles[range(config["num_features"])]
+    )
+    return cos_sim, moa_matching(profiles, moa_df)
+   
+def enrichment_analysis(similarities, moa_matches, percentile=99.):
+    threshold = np.percentile(similarities, percentile)
+
+    v11 = np.sum(np.logical_and(similarities > threshold, moa_matches)) 
+    v12 = np.sum(np.logical_and(similarities > threshold, np.logical_not(moa_matches)))
+    v21 = np.sum(np.logical_and(similarities <= threshold, moa_matches))
+    v22 = np.sum(np.logical_and(similarities <= threshold, np.logical_not(moa_matches)))
+
+    V = np.asarray([[v11, v12], [v21, v22]])
+    r = scipy.stats.fisher_exact(V, alternative="greater")
+    result = {"percentile": percentile, "threshold": threshold, "ods_ratio": r[0], "p-value": r[1]}
+    if np.isinf(r[0]):
+        result["ods_ratio"] = v22
+    return result
+
+def calculate_enrichment(sim_matrix, matches):
+    """计算富集分析（返回DataFrame）"""
+    enrichment_data = []
+    
+    for i in range(sim_matrix.shape[0]):
+        if matches[i].sum() > 1:  # 仅处理有效查询
+            idx = np.arange(sim_matrix.shape[1]) != i  # 排除自身
+            analysis = enrichment_analysis(
+                sim_matrix[i, idx], 
+                matches[i, idx]
+            )
+            analysis["query_id"] = i
+            enrichment_data.append(analysis)
+    
+    return pd.DataFrame(enrichment_data)
+
+
+def calculate_precision_recall(sim_matrix, matches):
+    """计算精确度和召回率指标"""
+    results = {}
+    
+    # 富集分析（返回单个数值）
+    enrichment_df = calculate_enrichment(sim_matrix, matches)
+    results['enrichment_top1'] = enrichment_df['ods_ratio'].mean()  # 提取均值
+    
+    # 平均精度（保持原实现）
+    results['map'] = sklearn.metrics.average_precision_score(
+        matches.flatten(), 
+        sim_matrix.flatten()
+    )
+    
+    # 不同top比例的召回率（需要修改实现）
+    def safe_recall(sim_vector, match_vector, k):
+        if match_vector.sum() == 0:
+            return np.nan
+        top_k = np.argsort(-sim_vector)[1:k+1]  # 排除自身
+        return match_vector[top_k].sum() / match_vector.sum()
+    
+    recall_metrics = {}
+    for percent in [1, 3, 5, 10]:
+        k = max(int(len(sim_matrix)*percent/100), 1)
+        recalls = [
+            safe_recall(sim_matrix[i], matches[i], k) 
+            for i in range(len(sim_matrix)) 
+            if matches[i].sum() > 1  # 仅计算有效查询
+        ]
+        recall_metrics[f'recall_top{percent}'] = np.nanmean(recalls)
+    
+    results.update(recall_metrics)
+    
+    return results
+
+def recall_at_k(sim_matrix, matches, k):
+    """计算top-k召回率"""
+    recalls = []
+    for i in range(len(sim_matrix)):
+        if matches[i].sum() > 0:
+            top_k = np.argsort(-sim_matrix[i])[1:k+1]
+            recalls.append(matches[i, top_k].sum() / matches[i].sum())
+    return np.mean(recalls) if recalls else 0
 
 def get_lr(optimizer):
     for param_group in optimizer.param_groups:
@@ -271,22 +493,6 @@ def ndcg_at_k(r, k, method=0):
     if not dcg_max:
         return 0.
     return dcg_at_k(r, k, method) / dcg_max
-
-# Enrichment analysis
-def enrichment_analysis(similarities, moa_matches, percentile):
-    threshold = np.percentile(similarities, percentile)
-
-    v11 = np.sum(np.logical_and(similarities > threshold, moa_matches)) 
-    v12 = np.sum(np.logical_and(similarities > threshold, np.logical_not(moa_matches)))
-    v21 = np.sum(np.logical_and(similarities <= threshold, moa_matches))
-    v22 = np.sum(np.logical_and(similarities <= threshold, np.logical_not(moa_matches)))
-
-    V = np.asarray([[v11, v12], [v21, v22]])
-    r = scipy.stats.fisher_exact(V, alternative="greater")
-    result = {"percentile": percentile, "threshold": threshold, "ods_ratio": r[0], "p-value": r[1]}
-    if np.isinf(r[0]):
-        result["ods_ratio"] = v22
-    return result
 
 # Fraction strong test
 def fraction_strong_test(treatment_corr, null, num_treatments):
