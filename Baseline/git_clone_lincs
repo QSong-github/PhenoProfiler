@@ -1,0 +1,5 @@
+download lincs-cell-painting data
+
+git clone https://github.com/broadinstitute/lincs-cell-painting.git
+
+we will use Baseline/lincs-cell-painting/metadata/platemaps/2016_04_01_a549_48hr_batch1
