@@ -45,7 +45,7 @@ For simple use, you can use PhenoProfiler on our [webserver](https://phenoprofil
 
 See [PhenoProfiler_inference.ipynb](PhenoProfiler_inference.ipynb). 
 
-The trained models of PhenoProfiler can be downloaded at [synapse](https://www.synapse.org/Synapse:syn64371555) or [google drive](https://drive.google.com/drive/folders/1Z58cPewzSNLNKJii2OEip6IopouL_Rdd).
+The trained models of PhenoProfiler can be downloaded at [google drive](https://drive.google.com/drive/folders/1Z58cPewzSNLNKJii2OEip6IopouL_Rdd) or [synapse](https://www.synapse.org/Synapse:syn64371555).
 
 ```
 import numpy as np
@@ -119,7 +119,7 @@ dataset/
         embedding/ ...
         profiling.csv
 ```
-Among them, we need to obtain the [embedding](https://cellpainting-gallery.s3.amazonaws.com/index.html#cpg0019-moshkov-deepprofiler/broad/workspace_dl/embeddings/105281_zenodo7114558/) and [profiling.csv](https://cellpainting-gallery.s3.amazonaws.com/index.html#cpg0019-moshkov-deepprofiler/broad/workspace_dl/metadata/) from cpg0019.
+Among them, we need to obtain the [embedding](https://cellpainting-gallery.s3.amazonaws.com/index.html#cpg0019-moshkov-deepprofiler/broad/workspace_dl/embeddings/105281_zenodo7114558/) and [profiling.csv](https://cellpainting-gallery.s3.amazonaws.com/index.html#cpg0019-moshkov-deepprofiler/broad/workspace_dl/metadata/) from cpg0019. Additionally, The datasets division can be downloaded at [google drive](https://drive.google.com/drive/folders/1Z58cPewzSNLNKJii2OEip6IopouL_Rdd).
  
 ## Training from scratch
 **Step1**: training the first model by regression loss:
