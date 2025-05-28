@@ -29,23 +29,18 @@ parser.add_argument('--model', type=str, default='PhenoProfiler', help='')
 
 def build_loaders(args):
     print("Building loaders")
-    dataset = PDDDataset(image_path = "../dataset/",
-               embedding_path = "../dataset/",
-               CSV_path = "../dataset/bbbc_merge.csv")
-    # dataset = PDDDataset(image_path = "../dataset/bbbc022/images/",
-    #           embedding_path = "../dataset/bbbc022/embedding/",
-    #           CSV_path = "../dataset/bbbc022/profiling.csv")
+    train_dataset = PDDDataset(image_path = "/data/boom/",
+               embedding_path = '/data/boom/',
+               CSV_path = "/data/boom/bbbc_train.csv")
+    test_dataset = PDDDataset(image_path = "/data/boom/",
+               embedding_path = '/data/boom/',
+               CSV_path = "/data/boom/bbbc_test.csv")
     
-    dataset = torch.utils.data.ConcatDataset([dataset])
-    
-    train_size = int(0.9 * len(dataset))
-    test_size = len(dataset) - train_size
-    train_dataset, test_dataset = torch.utils.data.random_split(dataset, [train_size, test_size], generator=torch.Generator().manual_seed(42))
-    print(len(train_dataset), len(test_dataset)) # 53246 13312 = 66558
-    print("train/test split completed")
+    # print("Using pre-split train/test datasets")
+    print(len(train_dataset), len(test_dataset))  # Ensure datasets are pre-split
 
     train_sampler = None
-    train_loader = DataLoader(train_dataset, batch_size=args.batch_size, shuffle=(train_sampler is None), num_workers=args.num_workers, sampler=train_sampler, pin_memory=True, drop_last=True)
+    train_loader = DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True, num_workers=args.num_workers, sampler=train_sampler, pin_memory=True, drop_last=True)
     test_loader = DataLoader(test_dataset, batch_size=args.batch_size, shuffle=False, num_workers=args.num_workers, pin_memory=True, drop_last=True)
 
     print("Finished building loaders")
