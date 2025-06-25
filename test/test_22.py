@@ -14,12 +14,12 @@ from utils import *
 
 # 配置参数
 CONFIG = {
-    "model_path": "../result/PhenoProfiler/best.pt",
+    "model_path": "../best.pt",
     "save_path": "bbbc022/PhenoProfiler/",
     "data_paths": {
         "image": "/data/boom/bbbc022/images/",
         "embedding": "/data/boom/bbbc022/embedding/",
-        "csv": "/data/boom/bbbc022/profiling.csv",
+        "csv": "/data/boom/bbbc022_site_test.csv",
         "moa": "../data/bbbc022_MOA_MATCHES_official.csv"
     },
     "reg_param": 1e-2,
