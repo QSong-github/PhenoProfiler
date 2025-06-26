@@ -85,7 +85,7 @@ print(image_embeddings.shape)
 ## Data Preparation
 
 <p align="center">
-    <img src="figures/dataset.png" alt="dataset" width="80%">
+    <img src="figures/dataset.png" alt="dataset" width="98%">
 </p>
 
 ```
