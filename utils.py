@@ -224,10 +224,25 @@ def calculate_precision_recall(sim_matrix, matches):
     results['enrichment_top1'] = enrichment_df['ods_ratio'].mean()  # 提取均值
     
     # 平均精度（保持原实现）
-    results['map'] = sklearn.metrics.average_precision_score(
-        matches.flatten(), 
-        sim_matrix.flatten()
-    )
+    sim_matrix_np = np.asarray(sim_matrix)
+    matches_np = np.asarray(matches, dtype=bool)
+    aps = []
+    valid_queries = 0
+    for i in range(sim_matrix_np.shape[0]):
+        # 排除自身匹配
+        query_sim = sim_matrix_np[i].copy()
+        query_matches = matches_np[i].copy()
+        query_sim[i] = -1  # 排除自身
+        query_matches[i] = False  # 排除自身
+        
+        # 只计算有正样本的查询
+        if query_matches.sum() > 0:
+            ap = sklearn.metrics.average_precision_score(query_matches, query_sim)
+            aps.append(ap)
+            valid_queries += 1
+    
+    # 使用第三种方法作为默认MAP
+    results['map'] = np.mean(aps)
     
     # 不同top比例的召回率（需要修改实现）
     def safe_recall(sim_vector, match_vector, k):
