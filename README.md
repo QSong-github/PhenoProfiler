@@ -1,3 +1,4 @@
+https://doi.org/10.5281/zenodo.17407526
 
 <div style="text-align: center;">
     <img src="figures/logo.png" alt="PhenoProfiler" width="100%">
