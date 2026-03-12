@@ -1,24 +1,17 @@
 
+<div style="text-align: center;">
 
-<div align="center">
-    <img src="figures/logo.png" alt="PhenoProfiler Logo" width="100%">
+    <img src="figures/logo.png" alt="PhenoProfiler" width="100%">
 
-    # PhenoProfiler
-    ### Advancing Phenotypic Learning for Image-based Drug Discovery
+    <h1 align="center">
 
-    <p align="center">
-        <a href="https://www.nature.com/articles/s41467-025-67479-w"><img src="https://img.shields.io/badge/Journal-Nature_Communications-blue.svg" alt="Journal"></a>
-        <a href="https://doi.org/10.1038/s41467-025-67479-w"><img src="https://img.shields.io/badge/DOI-10.1038/s41467--025--67479--w-B31B1B.svg" alt="DOI"></a>
-        <a href="https://doi.org/10.5281/zenodo.17407526"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.17407526.svg" alt="Zenodo"></a>
-    </p>
+        🤗 <a href="https://phenoprofiler.org/" target="_blank">Webserver</a> 🤗 
 
-    <h2>
-        🤗 <a href="https://phenoprofiler.org/">Webserver</a> 🤗 
-        <a href="https://www.nature.com/articles/s41467-025-67479-w">Paper</a> 🤗
-    </h2>
+        <a href="https://www.nature.com/articles/s41467-025-67479-w" target="_blank">Paper</a> 🤗
+
+    </h1>
+
 </div>
-
----
 
 
 <h3 align="center">  PhenoProfiler : Advancing Morphology Representations for Image-based Drug Discovery  </h3>
