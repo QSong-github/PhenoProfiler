@@ -13,8 +13,6 @@
 
 <h3 align="center">  PhenoProfiler : Advancing Morphology Representations for Image-based Drug Discovery  </h3>
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17407526.svg)](https://doi.org/10.5281/zenodo.17407526)
-
 **PhenoProfiler** is an advanced tool for phenotypic profiling of cell morphology, to efficiently extract phenotypic effects of perturbations from high-throughput imaging. 
 
 <p align="center">
