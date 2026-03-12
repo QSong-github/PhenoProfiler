@@ -1,11 +1,16 @@
 
 
-<div style="text-align: center;">
-    <img src="figures/logo.png" alt="PhenoProfiler" width="100%">
-    <h1 align="center">
-        🤗 <a href="https://phenoprofiler.org/" target="_blank">Webserver</a> 🤗 
-        <a href="https://www.nature.com/articles/s41467-025-67479-w" target="_blank">Paper</a> 🤗
-    </h1>
+<div align="center">
+    <img src="figures/logo.png" alt="PhenoProfiler Logo" width="100%">
+
+    # PhenoProfiler
+    ### Advancing Phenotypic Learning for Image-based Drug Discovery
+
+    [![Journal: Nature Communications](https://img.shields.io/badge/Journal-Nature_Communications-blue.svg)](https://www.nature.com/articles/s41467-025-67479-w)
+    [![DOI:10.1038/s41467-025-67479-w](https://img.shields.io/badge/DOI-10.1038/s41467--025--67479--w-B31B1B.svg)](https://doi.org/10.1038/s41467-025-67479-w)
+    [![Zenodo](https://zenodo.org/badge/DOI/10.5281/zenodo.17407526.svg)](https://doi.org/10.5281/zenodo.17407526)
+
+    [**🌐 Webserver**](https://phenoprofiler.org/) | [**📄 Full Paper**](https://www.nature.com/articles/s41467-025-67479-w) | [**🧪 Synapse**](https://www.synapse.org/Synapse:syn64371555)
 </div>
 
 
