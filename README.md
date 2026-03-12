@@ -4,7 +4,7 @@
     <img src="figures/logo.png" alt="PhenoProfiler" width="100%">
     <h1 align="center">
         🤗 <a href="https://phenoprofiler.org/" target="_blank">Webserver</a> 🤗 
-        <a href="https://arxiv.org/abs/2502.19568" target="_blank">Paper</a> 🤗
+        <a href="https://www.nature.com/articles/s41467-025-67479-w" target="_blank">Paper</a> 🤗
     </h1>
 </div>
 
